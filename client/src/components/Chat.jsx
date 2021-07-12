@@ -9,6 +9,7 @@ let socket = io("http://localhost:3001")
 export default function Chat({ nombre }) {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+
     
     useEffect(() => {
         socket.emit('connected', nombre)
@@ -24,7 +25,9 @@ export default function Chat({ nombre }) {
 
     const submit = (e) => {
         e.preventDefault()
-        socket.emit('message', nombre, message)
+        if(message) {
+            socket.emit('message', nombre, message)
+        }
         setMessage('')
     }
 
@@ -36,13 +39,14 @@ export default function Chat({ nombre }) {
             <form onSubmit={submit} style={{width: '100%'}}>
                 <FormControl style={{width: '100%'}}>
                     <TextField 
+                        autoComplete='off'
                         width="100%"
                         id="standard-basic" 
                         variant='outlined'
                         label="Mensaje" 
                         value={message}
                         onChange={e => setMessage(e.target.value)}
-                        style={{marginTop: '18px'}}
+                        style={{marginTop: '20px'}}
                     />
                     <Button type='submit'>Enviar</Button>
                 </FormControl>                

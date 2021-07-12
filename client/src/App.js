@@ -1,4 +1,4 @@
-import { Button, FormControl, TextField } from '@material-ui/core';
+import { Button, FormControl, TextField, Typography } from '@material-ui/core';
 import { useState } from 'react';
 import './App.css';
 import Chat from './components/Chat';
@@ -15,8 +15,12 @@ function App() {
   }
   return (
     <div style={{margin: '20px'}}>
+      <Typography variant='h5' centered={true}>Chat</Typography>
       {register ? (
+        <>
+        <Typography variant='subtitle1'>Estas conectado como: {name}</Typography>
         <Chat nombre={name}></Chat>
+        </>
       ):(
         <form onSubmit={e => registrar(e)}>
           <FormControl>
