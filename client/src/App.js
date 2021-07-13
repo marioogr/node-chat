@@ -15,7 +15,7 @@ function App() {
   }
   return (
     <div style={{margin: '20px'}}>
-      <Typography variant='h5' centered={true}>Chat</Typography>
+      <Typography variant='h5'>Chat</Typography>
       {register ? (
         <>
         <Typography variant='subtitle1'>Estas conectado como: {name}</Typography>
@@ -30,7 +30,7 @@ function App() {
               label="Nombre" 
               onChange={e => setName(e.target.value)}
             />
-            <Button>Ingresar</Button>
+            <Button type="submit">Ingresar</Button>
           </FormControl>
         </form>
       )}

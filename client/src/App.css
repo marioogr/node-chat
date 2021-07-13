@@ -2,3 +2,10 @@
     overflow-y: scroll;
     height: 360px
 }
+
+.circle {
+    border-radius: 50px;
+    background-color: green;
+    width: 10px;
+    height: 10px;
+}

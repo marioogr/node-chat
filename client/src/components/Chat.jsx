@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import io from 'socket.io-client'
-import { Button, FormControl, TextField } from '@material-ui/core';
+import { Box, Button, FormControl, TextField } from '@material-ui/core';
 import MessagesArea from './MessagesArea';
-
-let socket = io("http://localhost:3001")
-
+import UserList from './UserList';
+import { socket } from './socker'
 
 export default function Chat({ nombre }) {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
-
     
     useEffect(() => {
         socket.emit('connected', nombre)
@@ -33,9 +30,10 @@ export default function Chat({ nombre }) {
 
     return (
         <div>
-            <div>
+            <Box display="flex" flexDirection='row'>
                 <MessagesArea messages={messages}></MessagesArea>
-            </div>
+                <UserList></UserList>
+            </Box>
             <form onSubmit={submit} style={{width: '100%'}}>
                 <FormControl style={{width: '100%'}}>
                     <TextField 
