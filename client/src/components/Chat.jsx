@@ -7,18 +7,23 @@ import { socket } from './socker'
 export default function Chat({ nombre }) {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
+    const [users, setUsers] = useState([])
     
     useEffect(() => {
         socket.emit('connected', nombre)
+        console.log(socket.id)
     }, [nombre])
 
     useEffect(() => {
         socket.on('message', message => {
             setMessages([...messages, message])
         })
-
+        socket.on('listUsers', sockets => {
+            setUsers(sockets.sockets)
+        })
+        console.log(messages)
         return () => {socket.off()}
-    }, [messages])
+    }, [messages, users])
 
     const submit = (e) => {
         e.preventDefault()
@@ -32,7 +37,7 @@ export default function Chat({ nombre }) {
         <div>
             <Box display="flex" flexDirection='row'>
                 <MessagesArea messages={messages}></MessagesArea>
-                <UserList></UserList>
+                <UserList users={users}></UserList>
             </Box>
             <form onSubmit={submit} style={{width: '100%'}}>
                 <FormControl style={{width: '100%'}}>

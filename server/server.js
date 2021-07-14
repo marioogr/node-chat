@@ -11,25 +11,34 @@ const io = socketio(server, {
     }
 })
 
-let names = []
+let sockets = []
 
 io.on('connection', socket => {
     let name = ''
     socket.on('connected', (nombre) => {
-        names.push(nombre)
         name = nombre
         console.log('usuario conectado', nombre)
-        console.log(names)
+        
         socket.broadcast.emit('message', { nombre: name, message: name+' has connected' })
-        io.emit('listUsers', { names })
+        
+        sockets.push({client: name, socketId: socket.id})
+        io.emit('listUsers', { sockets })
+
+        console.log(sockets)
     })
+
     socket.on('message', (name, message) => {
+        console.log('mensaje', message)
         io.emit('message', { name, message })
     })
     socket.on('disconnect', (reason) => {
         console.log(reason, name)
-        names = names.filter(item => item === name)
-        io.emit('message', { server: 'server', message: 'has disconnected' })
+        io.emit('message', { server, message: name+' has disconnected' })
+
+        sockets = sockets.filter(item => item.socketId !== socket.id)
+        console.log(sockets)
+        io.emit('listUsers', { sockets })
+
     })
 })
 
