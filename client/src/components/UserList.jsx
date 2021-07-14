@@ -4,7 +4,7 @@ import React from 'react'
 export default function UserList({ users }) {
     
     return (
-        <Box boxShadow={1} style={{ padding: '20px', width: '25%' }} className='div-scroll'>
+        <Box style={{ padding: '20px', width: '25%' }} className='div-scroll'>
             <Typography variant='subtitle2'>Usuarios</Typography>
             { users.map((user, index) => (
                 <Box key={index} display='flex' flexDirection='row' alignItems='center'>

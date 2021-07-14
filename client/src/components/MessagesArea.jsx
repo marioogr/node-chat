@@ -13,7 +13,7 @@ export default function MessagesArea({ messages }) {
     }, [messages])  
 
     return (
-        <Box style={{padding: '20px', width: '75%'}} className='div-scroll'>
+        <Box borderRight={1} borderColor='grey.200' style={{padding: '20px', width: '75%'}} className='div-scroll'>
             { messages.map((e, i) => {
                 return (
                     <Box 

@@ -40,7 +40,7 @@ export default function Chat({ nombre }) {
     return (
         <div>
             <ToastContainer></ToastContainer>
-            <Box display="flex" flexDirection='row'>
+            <Box display="flex" flexDirection='row' className='div-shadows'>
                 <MessagesArea messages={messages}></MessagesArea>
                 <UserList users={users}></UserList>
             </Box>

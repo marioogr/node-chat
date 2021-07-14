@@ -1,11 +1,29 @@
 .div-scroll {
     overflow-y: scroll;
     height: 360px;
-    -webkit-box-shadow: 10px 10px 43px 5px rgba(204,204,204,0.74);
-    -moz-box-shadow: 10px 10px 43px 5px rgba(204,204,204,0.74);
-    box-shadow: 10px 10px 43px 5px rgba(204,204,204,0.74);
-    border-radius: 10px;
 }
+
+.div-shadows {
+    -webkit-box-shadow: 10px 10px 45px -10px rgba(204,204,204,0.74);
+    -moz-box-shadow: 10px 10px 45px -10px rgba(204,204,204,0.74);
+    box-shadow: 10px 10px 45px -10px rgba(204,204,204,0.74);
+}
+
+.div-scroll::-webkit-scrollbar {
+    width: 8px;   
+    height: 8px;   
+}
+
+.div-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.div-scroll::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
 
 .circle {
     border-radius: 50px;
