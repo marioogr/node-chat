@@ -1,3 +1,3 @@
 import io from 'socket.io-client'
 
-export let socket = io("http://192.168.18.8:3001")
+export let socket = io("https://node-test-chatw.herokuapp.com/")

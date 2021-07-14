@@ -13,7 +13,6 @@ export default function Chat({ nombre }) {
     
     useEffect(() => {
         socket.emit('connected', nombre)
-        console.log(socket.id)
     }, [nombre])
 
     useEffect(() => {
