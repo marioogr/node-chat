@@ -19,7 +19,7 @@ io.on('connection', socket => {
         name = nombre
         console.log('usuario conectado', nombre)
         
-        socket.broadcast.emit('message', { nombre: name, message: name+' has connected' })
+        socket.broadcast.emit('message', { nombre: 'server', message: name+' has connected' })
         
         sockets.push({client: name, socketId: socket.id})
         io.emit('listUsers', { sockets })
@@ -28,12 +28,11 @@ io.on('connection', socket => {
     })
 
     socket.on('message', (name, message) => {
-        console.log('mensaje', message)
         io.emit('message', { name, message })
     })
     socket.on('disconnect', (reason) => {
         console.log(reason, name)
-        io.emit('message', { server, message: name+' has disconnected' })
+        io.emit('message', { name: 'server', message: name+' has disconnected' })
 
         sockets = sockets.filter(item => item.socketId !== socket.id)
         console.log(sockets)

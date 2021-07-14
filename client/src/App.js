@@ -1,6 +1,7 @@
 import { Button, FormControl, TextField, Typography } from '@material-ui/core';
 import { useState } from 'react';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import Chat from './components/Chat';
 
 function App() {

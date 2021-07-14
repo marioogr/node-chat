@@ -3,6 +3,8 @@ import { Box, Button, FormControl, TextField } from '@material-ui/core';
 import MessagesArea from './MessagesArea';
 import UserList from './UserList';
 import { socket } from './socker'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 export default function Chat({ nombre }) {
     const [message, setMessage] = useState('')
@@ -17,9 +19,11 @@ export default function Chat({ nombre }) {
     useEffect(() => {
         socket.on('message', message => {
             setMessages([...messages, message])
+            toast(message.name+': '+message.message)
         })
         socket.on('listUsers', sockets => {
             setUsers(sockets.sockets)
+           
         })
         console.log(messages)
         return () => {socket.off()}
@@ -35,6 +39,7 @@ export default function Chat({ nombre }) {
 
     return (
         <div>
+            <ToastContainer></ToastContainer>
             <Box display="flex" flexDirection='row'>
                 <MessagesArea messages={messages}></MessagesArea>
                 <UserList users={users}></UserList>

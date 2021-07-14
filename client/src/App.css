@@ -1,6 +1,10 @@
 .div-scroll {
     overflow-y: scroll;
-    height: 360px
+    height: 360px;
+    -webkit-box-shadow: 10px 10px 43px 5px rgba(204,204,204,0.74);
+    -moz-box-shadow: 10px 10px 43px 5px rgba(204,204,204,0.74);
+    box-shadow: 10px 10px 43px 5px rgba(204,204,204,0.74);
+    border-radius: 10px;
 }
 
 .circle {
