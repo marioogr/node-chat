@@ -24,7 +24,6 @@ export default function Chat({ nombre }) {
             setUsers(sockets.sockets)
            
         })
-        console.log(messages)
         return () => {socket.off()}
     }, [messages, users])
 
