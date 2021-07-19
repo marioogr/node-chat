@@ -4,25 +4,37 @@ import MessagesArea from './MessagesArea';
 import UserList from './UserList';
 import { socket } from './socker'
 import { ToastContainer, toast } from 'react-toastify';
+import TipingAlert from './TipingAlert';
 
 
 export default function Chat({ nombre }) {
     const [message, setMessage] = useState('')
     const [messages, setMessages] = useState([])
     const [users, setUsers] = useState([])
-    
+    const [count, setCount] = useState(0)
+    const [toggleTiping, settoggleTiping] = useState(false)
+
+    const handleChange = (e) => {
+        setMessage(e.target.value)
+        socket.emit('writing', nombre)
+    }
+
     useEffect(() => {
         socket.emit('connected', nombre)
     }, [nombre])
 
     useEffect(() => {
         socket.on('message', message => {
+            if (message.name === 'server') {
+                toast(message.name+': '+message.message)
+            }
             setMessages([...messages, message])
-            toast(message.name+': '+message.message)
         })
         socket.on('listUsers', sockets => {
             setUsers(sockets.sockets)
-           
+        })
+        socket.on('writing', name => {
+            toast(name.name+' esta escribiendo')
         })
         return () => {socket.off()}
     }, [messages, users])
@@ -38,6 +50,7 @@ export default function Chat({ nombre }) {
     return (
         <div>
             <ToastContainer></ToastContainer>
+            <TipingAlert></TipingAlert>
             <Box display="flex" flexDirection='row' className='div-shadows'>
                 <MessagesArea messages={messages}></MessagesArea>
                 <UserList users={users}></UserList>
@@ -51,7 +64,7 @@ export default function Chat({ nombre }) {
                         variant='outlined'
                         label="Mensaje" 
                         value={message}
-                        onChange={e => setMessage(e.target.value)}
+                        onChange={e => handleChange(e)}
                         style={{marginTop: '20px'}}
                     />
                     <Button type='submit'>Enviar</Button>
