@@ -12,7 +12,7 @@ export default function Chat({ nombre }) {
     const [messages, setMessages] = useState([])
     const [users, setUsers] = useState([])
     const [count, setCount] = useState(0)
-    const [toggleTiping, settoggleTiping] = useState(false)
+    const [writingName, setWritingName] = useState('')
 
     const handleChange = (e) => {
         setMessage(e.target.value)
@@ -34,7 +34,8 @@ export default function Chat({ nombre }) {
             setUsers(sockets.sockets)
         })
         socket.on('writing', name => {
-            toast(name.name+' esta escribiendo')
+            setCount(2)
+            setWritingName(name.name)
         })
         return () => {socket.off()}
     }, [messages, users])
@@ -47,13 +48,23 @@ export default function Chat({ nombre }) {
         setMessage('')
     }
 
+    useEffect(() => {
+        if (count !== 0) {
+            setTimeout(() => {
+                setCount(count-1)
+            }, 1000)
+        }
+    }, [count])
+
     return (
         <div>
             <ToastContainer></ToastContainer>
-            <TipingAlert></TipingAlert>
             <Box display="flex" flexDirection='row' className='div-shadows'>
                 <MessagesArea messages={messages}></MessagesArea>
                 <UserList users={users}></UserList>
+            </Box>
+            <Box style={{height: '50px'}}>
+                <TipingAlert life={count} name={writingName}></TipingAlert>
             </Box>
             <form onSubmit={submit} style={{width: '100%'}}>
                 <FormControl style={{width: '100%'}}>
