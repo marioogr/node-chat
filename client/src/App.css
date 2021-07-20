@@ -31,3 +31,14 @@
     width: 10px;
     height: 10px;
 }
+
+.message {
+    padding: 8px;
+    margin: 10px;
+    overflow: auto
+}
+
+.users-area {
+    display: flex;
+    flex-direction: row-reverse;
+}

@@ -4,10 +4,9 @@ import React from 'react'
 export default function UserList({ users }) {
     
     return (
-        <Box style={{ padding: '20px', width: '25%' }} className='div-scroll'>
-            <Typography variant='subtitle2'>Usuarios</Typography>
+        <Box className='users-area'>
             { users.map((user, index) => (
-                <Box key={index} display='flex' flexDirection='row' alignItems='center'>
+                <Box key={index} display='flex' flexDirection='row' alignItems='center' padding={1}>
                     <div className='circle'></div>
                     <Typography variant='subtitle1'>{user.client}</Typography>
                 </Box>

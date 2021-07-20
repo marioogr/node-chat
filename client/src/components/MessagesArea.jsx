@@ -10,10 +10,10 @@ export default function MessagesArea({ messages }) {
 
     useEffect(() => {
         scrollToBottom()
-    }, [messages])  
-
+    }, [messages])   
+    
     return (
-        <Box borderRight={1} borderColor='grey.200' style={{padding: '20px', width: '75%'}} className='div-scroll'>
+        <Box style={{padding: '20px', width: '100%'}} className='div-scroll'>
             { messages.map((e, i) => {
                 return (
                     <Box 
@@ -22,9 +22,8 @@ export default function MessagesArea({ messages }) {
                         key={i} 
                         display="flex" 
                         flexDirection="row" 
-                        style={{padding: '8px', margin: '13px'}}
                         borderRadius={5}
-                        width="auto"
+                        className="message"
                     >
                         <Typography variant='subtitle1' style={{fontWeight: 'bold'}}>{e.name}</Typography>
                         <Typography variant='subtitle1'>{': '+e.message}</Typography>

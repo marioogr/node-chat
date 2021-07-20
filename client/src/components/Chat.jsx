@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, FormControl, TextField } from '@material-ui/core';
+import { Box, Button, FormControl, TextField, Typography } from '@material-ui/core';
 import MessagesArea from './MessagesArea';
 import UserList from './UserList';
 import { socket } from './socker'
@@ -59,9 +59,9 @@ export default function Chat({ nombre }) {
     return (
         <div>
             <ToastContainer></ToastContainer>
+            <UserList users={users}></UserList>
             <Box display="flex" flexDirection='row' className='div-shadows'>
                 <MessagesArea messages={messages}></MessagesArea>
-                <UserList users={users}></UserList>
             </Box>
             <Box style={{height: '50px'}}>
                 <TipingAlert life={count} name={writingName}></TipingAlert>
