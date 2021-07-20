@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, FormControl, TextField, Typography } from '@material-ui/core';
+import { Box, Button, FormControl, TextField } from '@material-ui/core';
 import MessagesArea from './MessagesArea';
 import UserList from './UserList';
 import { socket } from './socker'
