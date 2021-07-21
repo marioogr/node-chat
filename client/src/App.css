@@ -4,9 +4,11 @@
 }
 
 .div-shadows {
-    -webkit-box-shadow: 10px 10px 45px -10px rgba(204,204,204,0.74);
-    -moz-box-shadow: 10px 10px 45px -10px rgba(204,204,204,0.74);
-    box-shadow: 10px 10px 45px -10px rgba(204,204,204,0.74);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(209, 209, 209, 0.75);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(209, 209, 209, 0.75);
+    box-shadow:         0px 0px 5px 0px rgba(209, 209, 209, 0.75);
+    border: 1px solid rgba(209, 209, 209, 0.75);
+    border-radius: 15px;
 }
 
 .div-scroll::-webkit-scrollbar {
